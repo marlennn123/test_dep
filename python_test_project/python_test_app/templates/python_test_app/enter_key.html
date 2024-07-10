@@ -1,0 +1,7 @@
+<h2>Enter Access Key for {{ variant.name }}</h2>
+<form method="post" action="{% url 'start_test' variant.id access_key=variant.key %}">
+    {% csrf_token %}
+    <label for="access_key">Access Key:</label>
+    <input type="text" name="access_key" required>
+    <input type="submit" value="Start Test">
+</form>

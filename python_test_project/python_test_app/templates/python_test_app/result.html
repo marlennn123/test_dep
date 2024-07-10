@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .correct {
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .incorrect {
+            color: #f44336;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Results</h2>
+    <ul>
+        {% for user_answer in user_answers %}
+            <li>
+                <strong>Question {{ user_answer.question.pk }}:</strong><br>
+                Your Answer: {{ user_answer.selected_option }} -
+                {% if user_answer.selected_option == user_answer.question.correct_option %}
+                    <span class="correct">Correct</span> - You are cool!
+                {% else %}
+                    <span class="incorrect">Incorrect</span> - Correct answer: {{ user_answer.question.correct_option }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

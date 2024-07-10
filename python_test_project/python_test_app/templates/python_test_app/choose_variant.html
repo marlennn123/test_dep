@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose a Variant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Choose a Variant</h2>
+        <form method="post" action="{% url 'choose_variant' %}">
+            {% csrf_token %}
+            <label for="variant">Select a Variant:</label>
+            <select name="variant_id" id="variant" required>
+                {% for variant in variants %}
+                    <option value="{{ variant.id }}">{{ variant.name }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="access_key">Enter Access Key:</label>
+            <input type="text" name="access_key" required>
+            <br>
+            <input type="submit" value="Start Test">
+        </form>
+    </div>
+</body>
+</html>
